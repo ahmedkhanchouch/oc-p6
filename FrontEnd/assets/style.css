@@ -23,6 +23,14 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+* {
+	box-sizing: border-box;
+  }
+
+a {
+	text-decoration: none;
+  }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -93,6 +101,13 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+}
+
+nav a {
+	color: #000;
+}
+nav a:hover{
+	color: #B1663C;
 }
 
 li:hover {
@@ -186,3 +201,252 @@ footer nav ul {
 	margin: 2em
 }
 
+.filtres{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding:45px ;
+	flex-shrink: 0;
+	gap: 8px;
+}
+.btn{
+	border-radius: 3.75rem;
+	border: 1px solid #1D6154 ;
+	background: #FFFEF8;
+	padding: 13px;
+	cursor: pointer;
+	/* style de text  */
+	text-align: center;
+	font-family: Syne;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	color: #1D6154;
+}
+.btn:active {
+	color: #FFFEF8;
+	background:#1D6154 ;
+
+}
+
+/* style de lien de modal  */
+.conteneur{
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 10px;
+}
+
+.conteneur a{	
+	color: black;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	font-weight: 400;
+	word-wrap: break-word
+}
+
+/* style de modal  */
+.js-modal{
+	display: none;
+}
+
+
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.modal H1{
+	color: #000;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 1.625rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	padding: 20px;
+}
+
+.modal-wrapper{
+	width: 600px;
+	padding: 25px;
+	max-width: calc(100vw-20px);
+	max-height: calc(100vh -20px);
+	overflow: auto;
+	border-radius: 0.625rem;
+	background: #FFF;
+	position: relative;	
+}
+
+.gallery-modal{
+	padding: 20px 20px 40px 20px;
+	margin: auto;
+	width: 80%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 20px;
+	
+}
+
+.js-modal-close{
+	position: absolute;
+	right: 12px;
+	background: white;
+	border: none;
+	cursor: pointer;
+}
+
+.gallery-modal figure{
+	position: relative;
+}
+.gallery-modal img {
+	width: 100%;
+	/* position: relative; */
+}
+figure .js-modal-delete{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+.ligne-modal{
+	width: 80%;
+  height: 100%;
+  border: 1px #B3B3B3 solid;
+  margin: auto;
+
+}
+.CFO{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	height: 50px;
+	text-align: center;
+	border-radius: 60px ;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.input-image{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 26.25rem;
+	height: 10.5625rem;
+	flex-shrink: 0;
+	border-radius: 0.1875rem;
+	background: #E8F1F6;
+}
+
+.input-image p {
+	color: #444;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 0.625rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.input-image input{
+	width: 10.8125rem;
+	height: 2.25rem;
+	flex-shrink: 0;
+	border-radius: 3.125rem;
+	background: #CBD6DC;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: #306685;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	display: none;
+}
+
+.fa-image{
+	color: #B9C5CC;
+	color: #B9C5CC;
+	font-size: 75px;
+	width: 4.75rem;
+	height: 4.75rem;
+	flex-shrink: 0;
+}
+form select{
+	background: #FFF;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	
+	width: 26.25rem;
+	height: 3.1875rem;
+	flex-shrink: 0;
+	border: none;
+}
+.js-modal-back{
+	position: absolute;
+	left: 12px;
+	background: white;
+	border: none;
+	cursor: pointer;
+}
+
+.image-form{
+	margin: auto;
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+.image-form input[type="text"] {
+	background: #FFF;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	width: 26.25rem;
+	height: 3.1875rem;
+	flex-shrink: 0;
+	border: none;
+  }
+
+  .label-file {
+    cursor: pointer;
+    width: 10.8125rem;
+	height: 2.25rem;
+	flex-shrink: 0;
+	border-radius: 3.125rem;
+	background: #CBD6DC;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #306685;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+
+/* // et on masque le input */
+.input-file {
+    display: none;
+}

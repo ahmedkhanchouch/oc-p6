@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sophie Bluel - Architecte d'intérieur</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+		<meta name="description" content="">
+		<link rel="stylesheet" href="./assets/style.css">
+		<script src="https://kit.fontawesome.com/8031ffea2b.js" crossorigin="anonymous"></script>
+		<script type="module" src="/works.js"></script>
+	</head>
 <body>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
+			<li><a href="index.html">projets</a></li>
+			<li><a href="index.html">contact</a></li>
+			<li><a href="login.html">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,7 +37,59 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="conteneur"><h2>Mes Projets</h2> <a href="#modale" class="js-modal"><i class="fa-regular fa-pen-to-square" href="#modale"></i> modifier</a></div>
+		<aside id="modale" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
+			<div class="modal-wrapper js-modal-stop">
+				
+				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+				<h1 id="titlemodal">galerie Photo</h1>
+				<div class="gallery-modal">
+					
+				</div>
+				<div class="ligne-modal"></div>
+				<button href="#modale2" class="js-modal CFO">Ajouter une photo</button>			
+			</div>
+		</aside>
+
+		<aside id="modale2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
+			<div class="modal-wrapper js-modal-stop">
+				
+				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+				<button class="js-modal-back" href="#modale"><i class="fa-solid fa-arrow-left"></i></button>
+				<h1 id="titlemodal">Log In</h1>
+
+				<form action="#" method="post" class="image-form">
+					<div class="input-image">
+						<div id="previewImageContainer"><i class="fa-regular fa-image "></i></div>
+						<input type="file" name="images" id="file" class="input-file"  accept="image/png, image/jpeg" >
+						<label for="file" class="label-file" id="fileInput" onchange="previewImage()">+ Ajouter photo</label>	
+						<p>jpg, png : 4mo max</p>
+					</div>
+					<label for="Titre">Titre</label>
+					<input type="text" name="text" id="text">
+					<label for="categorie">Gategorie</label>
+					<select name="categorie" id="categorie">
+						<optgroup>
+							<option value=""></option>
+							<option value="">Objet</option>
+							<option value="">Appartement</option>
+							<option value="">Hotels & restaurants</option>
+						</optgroup>
+					</select> 
+					<div class="ligne-modal"></div>
+					<input type="submit" value="valider" class="js-modal CFO">
+				</form>			
+			</div>
+		</aside>
+		<div class="filtres">
+			<button class="btn btn-all">Tout</button>
+			
+			<button class="btn btn-object">Objet</button>
+			
+			<button class="btn btn-appartement">Appartement</button>
+			
+			<button class="btn btn-hotels">Hôtels & restaurants</button>
+		</div>
 		<div class="gallery">
 			<figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
