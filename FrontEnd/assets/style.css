@@ -250,6 +250,9 @@ footer nav ul {
 .js-modal{
 	display: none;
 }
+.js-modal.show{
+	display: block;
+}
 
 
 .modal {

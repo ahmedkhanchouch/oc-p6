@@ -3,7 +3,15 @@
 const reponse = await fetch(`http://localhost:5678/api/works`);
 const pieces = await reponse.json();
 console.log(pieces)
+ShowModifier()
 
+function ShowModifier(){
+    const userId = localStorage.getItem('userId');
+    const isAuthentified = !!userId ;
+    if (isAuthentified){
+        document.querySelector('.js-modal').classList.add('show')
+    }
+}
 function genererPieces(pieces){
     for (let i = 0; i < pieces.length; i++) {
 
@@ -12,6 +20,7 @@ function genererPieces(pieces){
         const sectionFiches = document.querySelector(".gallery");
         // Création d’une balise dédiée à une figure d'images
         const pieceElement = document.createElement("figure");
+        pieceElement.setAttribute('data-id', figure.id);
         // Création des balises 
         const imageElement = document.createElement("img");
         imageElement.src = figure.imageUrl;
@@ -37,6 +46,7 @@ function genererPieces(pieces){
             const sectionFiches = document.querySelector(".gallery-modal");
             // Création d’une balise dédiée à une figure d'images
             const pieceElement = document.createElement("figure");
+            pieceElement.setAttribute('data-id', figure.id);
             // Création des balises 
             const imageElement = document.createElement("img");
             imageElement.src = figure.imageUrl;
@@ -129,7 +139,6 @@ function genererPieces(pieces){
 
     }
 
-    x
 
     const stopPropagation = function (e){
         e.stopPropagation();
@@ -157,11 +166,11 @@ function genererPieces(pieces){
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem('token')}`,
                 }
+            })
+            document.querySelector(`figure[data-id="${id}"]`).remove();
         })
-    })
-
         
-});
+    });
 
 function previewImage() {
     const fileInput = document.getElementById('fileInput');
@@ -181,10 +190,12 @@ function previewImage() {
         });
         
         image.src = imageUrl;
-        image.style.width = '200px'; // Indiquez les dimensions souhaitées ici.
+        image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
         image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
       });
       
       reader.readAsDataURL(file);
     }
   }
+
+  previewImage()

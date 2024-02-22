@@ -7,10 +7,10 @@ async function login(email, password) {
         },
         body: JSON.stringify({email, password})});
         if( response.status === 200){
-        const responseData = await response.json();
-        localStorage.setItem('userId', responseData.userId);
-        localStorage.setItem('token', responseData.token);
-        let linksmodal = document.querySelector
+            const responseData = await response.json();
+            localStorage.setItem('userId', responseData.userId);
+            localStorage.setItem('token', responseData.token);
+            location.replace("index.html")
     }
 }
 
@@ -19,6 +19,5 @@ document.querySelector('#contact form').addEventListener('submit', (e) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     login(email, password);
-    location.replace("index.html")
     return false;
 })
