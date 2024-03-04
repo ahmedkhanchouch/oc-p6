@@ -111,9 +111,23 @@ function genererPieces(pieces){
 
 
     // modal bloc  
-    let modal = null 
+     
 
     const openModal = function (e) {
+        let modal = null
+
+        const closeModal = function(e){
+            if ( modal === null) return
+            e.preventDefault();
+            modal.style.display = "none" 
+            modal.setAttribute('aria-hidden' , 'true')
+            modal.removeAttribute('aria-modal')
+            modal.removeEventListener('click' , closeModal)
+            modal.querySelector('.js-modal-close').removeEventListener('click' , closeModal)
+            modal.querySelector('.js-modal-stop').removeEventListener('click' , stopPropagation)
+            modal = null
+    
+        }
         e.preventDefault();
         const target = document.querySelector (e.target.getAttribute('href'))
         target.style.display = null 
@@ -126,18 +140,7 @@ function genererPieces(pieces){
         modal.querySelector('.js-modal-stop').addEventListener('click' , stopPropagation)
     }
     
-    const closeModal = function(e){
-        if ( modal === null) return
-        e.preventDefault();
-        modal.style.display = "none" 
-        modal.setAttribute('aria-hidden' , 'true')
-        modal.removeAttribute('aria-modal')
-        modal.removeEventListener('click' , closeModal)
-        modal.querySelector('.js-modal-close').removeEventListener('click' , closeModal)
-        modal.querySelector('.js-modal-stop').removeEventListener('click' , stopPropagation)
-        modal = null
-
-    }
+    
 
 
     const stopPropagation = function (e){
@@ -167,35 +170,75 @@ function genererPieces(pieces){
                     "Authorization": `Bearer ${localStorage.getItem('token')}`,
                 }
             })
-            document.querySelector(`figure[data-id="${id}"]`).remove();
+            document.querySelectorAll(`figure[data-id="${id}"]`).forEach(elt => elt.remove());
         })
         
     });
 
 function previewImage() {
     const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    const imagePreviewContainer = document.getElementById('previewImageContainer');
-    
-    if(file.type.match('image.*')){
-      const reader = new FileReader();
-      
-      reader.addEventListener('load', function (event) {
-        const imageUrl = event.target.result;
-        const image = new Image();
+    fileInput.addEventListener('input', () =>{
+        preventDefault();
+        const file = fileInput.files[0];
+        const imagePreviewContainer = document.getElementById('previewImageContainer');
         
-        image.addEventListener('load', function() {
-          imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
-          imagePreviewContainer.appendChild(image);
-        });
-        
-        image.src = imageUrl;
-        image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
-        image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
-      });
-      
-      reader.readAsDataURL(file);
-    }
+        if(file.type.match('image.*')){
+          const reader = new FileReader();
+          
+          reader.addEventListener('load', function (event) {
+            const imageUrl = event.target.result;
+            const image = new Image();
+            
+            image.addEventListener('load', function() {
+              imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
+              imagePreviewContainer.appendChild(image);
+            });
+            
+            image.src = imageUrl;
+            image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
+            image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
+          });
+          
+          reader.readAsDataURL(file);
+        }
+    })
   }
 
   previewImage()
+
+// bloc de code de l'ajout dimage 
+const form = document.forms.namedItem("fileinfo");
+form.addEventListener(
+  "submit",
+  (event) => {
+    const formData = new FormData(form);
+
+    formData.append("CustomField", "Des données supplémentaires");
+
+    const request = new XMLHttpRequest();
+    request.open("POST", "stash.php", true);
+    request.onload = (progress) => {
+      output.innerHTML =
+        request.status === 200
+          ? "Fichier téléversé !"
+          : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
+    };
+
+    request.send(formData);
+    event.preventDefault();
+  },
+  false,
+);
+
+document.querySelector('.js-modal').addEventListener('click' , async function (e) {
+        e.preventDefault();
+        const url = 'http://localhost:5678/api/works/';
+        const response = await fetch(url, {
+            method: 'post', 
+            headers: {
+                "Content-Type: multipart/form-data'",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+    })
+    ;
