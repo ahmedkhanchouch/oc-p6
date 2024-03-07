@@ -2,6 +2,9 @@
 
 const reponse = await fetch(`http://localhost:5678/api/works`);
 const pieces = await reponse.json();
+const category = await fetch(`http://localhost:5678/api/categories`);
+const categories = await category.json();
+console.log(categories)
 console.log(pieces)
 ShowModifier()
 
@@ -177,68 +180,76 @@ function genererPieces(pieces){
 
 function previewImage() {
     const fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('input', () =>{
-        preventDefault();
+    fileInput.addEventListener('input', (e) =>{
+        e.preventDefault();
         const file = fileInput.files[0];
         const imagePreviewContainer = document.getElementById('previewImageContainer');
         
         if(file.type.match('image.*')){
-          const reader = new FileReader();
+            const reader = new FileReader();
           
-          reader.addEventListener('load', function (event) {
-            const imageUrl = event.target.result;
-            const image = new Image();
-            
-            image.addEventListener('load', function() {
-              imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
-              imagePreviewContainer.appendChild(image);
+            reader.addEventListener('load', function (event) {
+                const imageUrl = event.target.result;
+                const image = new Image();
+                
+                image.addEventListener('load', function() {
+                    imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
+                    imagePreviewContainer.appendChild(image);
+                });
+                
+                image.src = imageUrl;
+                image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
+                image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
             });
             
-            image.src = imageUrl;
-            image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
-            image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
-          });
-          
-          reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
         }
     })
-  }
+}
 
-  previewImage()
+previewImage()
 
 // bloc de code de l'ajout dimage 
-const form = document.forms.namedItem("fileinfo");
-form.addEventListener(
-  "submit",
-  (event) => {
-    const formData = new FormData(form);
-
-    formData.append("CustomField", "Des données supplémentaires");
-
-    const request = new XMLHttpRequest();
-    request.open("POST", "stash.php", true);
-    request.onload = (progress) => {
-      output.innerHTML =
-        request.status === 200
-          ? "Fichier téléversé !"
-          : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
-    };
-
-    request.send(formData);
-    event.preventDefault();
-  },
-  false,
-);
-
-document.querySelector('.js-modal').addEventListener('click' , async function (e) {
+    // const form = document.forms.namedItem("fileinfo");
+    // form.addEventListener(
+    //     "submit",
+    //     (event) => {
+    //         const formData = new FormData(form);
+            
+    //         formData.append("CustomField", "Des données supplémentaires");
+            
+    //         const request = new XMLHttpRequest();
+    //         request.open("POST", "stash.php", true);
+    //         request.onload = (progress) => {
+    //             output.innerHTML =
+    //             request.status === 200
+    //             ? "Fichier téléversé !"
+    //             : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
+    //         };
+            
+    //         request.send(formData);
+    //         event.preventDefault();
+    //     },
+    //     false,
+    //     );
+        
+    document.querySelector('#modale2 form').addEventListener('submit' , async function (e) {
         e.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        const formData = new FormData();
+        
+        formData.append("image", fileInput.files[0]);
+        formData.append("title", 'test');
+        formData.append("category", 1 );
         const url = 'http://localhost:5678/api/works/';
         const response = await fetch(url, {
             method: 'post', 
             headers: {
-                "Content-Type: multipart/form-data'",
                 "Authorization": `Bearer ${localStorage.getItem('token')}`,
-            }
+            },
+            body: formData
         })
+        document.querySelector(".gallery").innerHTML = "";
+    genererPieces(pieces)
     })
-    ;
+    
