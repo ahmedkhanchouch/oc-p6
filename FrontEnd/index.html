@@ -19,7 +19,7 @@
 		<ul>
 			<li><a href="index.html">projets</a></li>
 			<li><a href="index.html">contact</a></li>
-			<li><a href="login.html">login</a></li>
+			<li><a href="login.html" class="login">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -68,16 +68,18 @@
 					<label for="Titre">Titre</label>
 					<input type="text" name="text" id="text">
 					<label for="categorie">Gategorie</label>
-					<select name="categorie" id="categorie">
-						<optgroup>
-							<option value=""></option>
-							<option value="">Objet</option>
-							<option value="">Appartement</option>
-							<option value="">Hotels & restaurants</option>
-						</optgroup>
-					</select> 
+					<div id="categories">
+						<select name="categorie">
+							<optgroup>
+								<!-- <option value=""></option>
+								<option value="">Objet</option>
+								<option value="">Appartement</option>
+								<option value="">Hotels & restaurants</option> -->
+							</optgroup>
+						</select> 
+					</div>
 					<div class="ligne-modal"></div>
-					<input type="submit" value="valider" class="CFO">
+					<input type="submit" value="valider" class="CFO" id="submitButton">
 				</form>			
 			</div>
 		</aside>
