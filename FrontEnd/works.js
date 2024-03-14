@@ -29,12 +29,12 @@ function GenererCategories(categories) {
     // Création des balises 
     for (let i=0; i < categories.length;i++){
         
-        const figure = categories[i];
+        const option = categories[i];
         
         const optionElement = document.createElement("option");
-        optionElement.setAttribute('data-id', figure.id);
-        optionElement.value = figure.name;
-        optionElement.innerText = figure.name;
+        optionElement.setAttribute('data-id', option.id);
+        optionElement.value = option.name;
+        optionElement.innerText = option.name;
         // On rattache la balise select a la section categories
         sectionCategorie.appendChild(SelectElement);
         SelectElement.appendChild(optElement);
@@ -257,11 +257,28 @@ previewImage()
 document.querySelector('#modale2 form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const fileInput = document.getElementById('fileInput');
+    const fileCategorie = document.getElementById('categories')
+    const fileText = document.getElementById('text')
+    
+    
     const formData = new FormData();
     
     formData.append("image", fileInput.files[0]);
-    formData.append("title", 'test');
+    
+    if(!fileInput?.files[0]) {
+        document.getElementById('monErreur').innerHtml = "Image non renseignée";
+        return false;
+    }
+    
+    formData.append("title", fileText.value);
+    
+    if(!fileText) {
+         document.getElementById('monErreur').innerHtml = "Titre non renseignée";
+         return false;
+    }
+        
     formData.append("category", 1);
+    
     const url = 'http://localhost:5678/api/works';
     const response = await fetch(url, {
         method: 'post',
@@ -270,7 +287,8 @@ document.querySelector('#modale2 form').addEventListener('submit', async functio
         },
         body: formData
     })
-    
+   
+   
     const result = await response.json();
     GenererPieces(result)
     GenererPiecesmodal(result);

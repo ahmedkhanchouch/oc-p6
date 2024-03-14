@@ -14,7 +14,7 @@ async function login(email, password) {
     }
     else{
         const Erreur = document.getElementById('erreur');
-        Erreur.classList.remove('dislapErreur')
+        Erreur.classList.remove('MessageErreur')
     }
 }
 

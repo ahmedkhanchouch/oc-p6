@@ -457,3 +457,6 @@ form select{
 .dislapErreur{
 	display: none;
 }
+#erreur{
+ color: red;
+}
