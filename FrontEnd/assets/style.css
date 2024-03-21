@@ -103,6 +103,20 @@ nav li {
 	font-size: 1.2em;
 }
 
+li .login{
+	display: flex;
+  width: 3.4375rem;
+  height: 1.1875rem;
+  padding: 0rem 0.5625rem 0rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+li .hidden{
+	display: none;
+}
 nav a {
 	color: #000;
 }
@@ -227,7 +241,29 @@ footer nav ul {
 .btn:active {
 	color: #FFFEF8;
 	background:#1D6154 ;
+	
+}
+#monErreur{
+	color: red;
+    text-align: center;
+}
 
+.MessageErreur{
+	display: none;
+	
+}
+#erreur{
+	padding: 15px;
+	color: red;
+}
+
+.mdp{
+color: #3D3D3D;
+ font-size: 14px;
+ font-family: Work Sans;
+ font-weight: 500;
+ text-decoration: underline;
+ word-wrap: break-word
 }
 
 /* style de lien de modal  */
@@ -236,6 +272,7 @@ footer nav ul {
 	align-items: baseline;
 	justify-content: center;
 	gap: 10px;
+	
 }
 
 .conteneur a{	
@@ -243,8 +280,8 @@ footer nav ul {
 	font-size: 14px;
 	font-family: 'Work Sans';
 	font-weight: 400;
-	word-wrap: break-word
-}
+	word-wrap: break-word;
+	}
 
 /* style de modal  */
 .js-modal{
@@ -253,7 +290,6 @@ footer nav ul {
 .js-modal.show{
 	display: block;
 }
-
 
 .modal {
 	display: flex;
@@ -287,6 +323,9 @@ footer nav ul {
 	border-radius: 0.625rem;
 	background: #FFF;
 	position: relative;	
+	width: 39.375rem;
+	height: 43rem;
+	flex-shrink: 0;
 }
 
 .gallery-modal{
@@ -321,11 +360,10 @@ figure .js-modal-delete{
 	top: 5px;
 }
 .ligne-modal{
-	width: 80%;
-  height: 100%;
   border: 1px #B3B3B3 solid;
   margin: auto;
-
+  width: 26.25rem;
+  height: 0.0625rem;
 }
 .CFO{
 	font-family: 'Syne';
@@ -335,14 +373,17 @@ figure .js-modal-delete{
 	margin : 2em auto ;
 	width: 180px;
 	height: 50px;
-	text-align: center;
 	border-radius: 60px ;
-	align-items: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	position: absolute;
+    right: 14rem;
+    bottom: 3rem
 }
+
+/* style modal 2 */
 
 .input-image{
 	display: flex;
@@ -350,8 +391,8 @@ figure .js-modal-delete{
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
-	width: 26.25rem;
-	height: 10.5625rem;
+	/* width: 26.25rem;
+	height: 10.5625rem; */
 	flex-shrink: 0;
 	border-radius: 0.1875rem;
 	background: #E8F1F6;
@@ -397,12 +438,17 @@ figure .js-modal-delete{
 form select{
 	background: #FFF;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-	
-	width: 26.25rem;
+	width:100%;
 	height: 3.1875rem;
 	flex-shrink: 0;
 	border: none;
-}
+	color: #444444;
+	font-size: 14px;
+	font-family: Work Sans;
+	font-weight: 400;
+	word-wrap: break-word;
+	padding-left: 10px;
+	}
 .js-modal-back{
 	position: absolute;
 	left: 12px;
@@ -417,14 +463,21 @@ form select{
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 }
 .image-form input[type="text"] {
 	background: #FFF;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-	width: 26.25rem;
-	height: 3.1875rem;
+	width: 100%;
+	height: 3.1875rem; 
 	flex-shrink: 0;
 	border: none;
+	color: #444444;
+	font-size: 14px;
+	font-family: Work Sans;
+	font-weight: 400;
+	word-wrap: break-word;
+	padding-left: 10px;
   }
 
   .label-file {
@@ -454,9 +507,3 @@ form select{
     display: none;
 }
 
-.dislapErreur{
-	display: none;
-}
-#erreur{
- color: red;
-}

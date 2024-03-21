@@ -12,10 +12,19 @@ function ShowModifier() {
     const isAuthentified = !!userId;
     if (isAuthentified) {
         document.querySelector('.js-modal').classList.add('show')
+        document.querySelector('a.login').classList.add('hidden')
+        document.querySelector('a.Logout').classList.remove('hidden')
     }
 }
 ShowModifier()
 
+
+document.querySelector('.Logout').addEventListener('click', function() {
+    
+    window.localStorage.clear()
+    
+}
+)
 
 function GenererCategories(categories) {
     
@@ -33,7 +42,7 @@ function GenererCategories(categories) {
         
         const optionElement = document.createElement("option");
         optionElement.setAttribute('data-id', option.id);
-        optionElement.value = option.name;
+        optionElement.value = option.id;
         optionElement.innerText = option.name;
         // On rattache la balise select a la section categories
         sectionCategorie.appendChild(SelectElement);
@@ -112,7 +121,6 @@ genererPiecesmodal(pieces);
 
 
 const boutonAll = document.querySelector(".btn-all");
-
 boutonAll.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.category.name;
@@ -122,7 +130,6 @@ boutonAll.addEventListener("click", function () {
 });
 
 const boutonObjet = document.querySelector(".btn-object");
-
 boutonObjet.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.category.name === "Objets";
@@ -132,7 +139,6 @@ boutonObjet.addEventListener("click", function () {
 });
 
 const boutonAppart = document.querySelector(".btn-appartement");
-
 boutonAppart.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.category.name === "Appartements";
@@ -142,7 +148,6 @@ boutonAppart.addEventListener("click", function () {
 });
 
 const boutonHotels = document.querySelector(".btn-hotels");
-
 boutonHotels.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.category.name === "Hotels & restaurants";
@@ -152,10 +157,18 @@ boutonHotels.addEventListener("click", function () {
 });
 
 
+const closeModalAdd = function () {
+
+    const modal = document.querySelector('#modale2');
+    modal.style.display = "none"
+    modal.setAttribute('aria-hidden', 'true')
+    modal.removeAttribute('aria-modal')
+    // modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
+    
+    }
+    closeModalAdd()
 
 // modal bloc  
-
-
 const openModal = function (e) {
     let modal = null
 
@@ -182,8 +195,6 @@ const openModal = function (e) {
     // modal.querySelector('#modal.js-modal-close').addEventListener('click' , closeModal)
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 }
-
-
 
 
 const stopPropagation = function (e) {
@@ -257,7 +268,7 @@ previewImage()
 document.querySelector('#modale2 form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const fileInput = document.getElementById('fileInput');
-    const fileCategorie = document.getElementById('categories')
+    const fileCategorie = document.querySelector('#categories select')
     const fileText = document.getElementById('text')
     
     
@@ -266,18 +277,18 @@ document.querySelector('#modale2 form').addEventListener('submit', async functio
     formData.append("image", fileInput.files[0]);
     
     if(!fileInput?.files[0]) {
-        document.getElementById('monErreur').innerHtml = "Image non renseignée";
+        document.getElementById('monErreur').innerHTML = "Image non renseignée";
         return false;
     }
     
     formData.append("title", fileText.value);
     
-    if(!fileText) {
-         document.getElementById('monErreur').innerHtml = "Titre non renseignée";
+    if(!fileText.value) {
+         document.getElementById('monErreur').innerHTML = "Titre non renseignée";
          return false;
     }
         
-    formData.append("category", 1);
+    formData.append("category", +fileCategorie.value);
     
     const url = 'http://localhost:5678/api/works';
     const response = await fetch(url, {

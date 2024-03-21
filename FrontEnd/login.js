@@ -11,12 +11,13 @@ async function login(email, password) {
             localStorage.setItem('userId', responseData.userId);
             localStorage.setItem('token', responseData.token);
             location.replace("index.html")
+             
     }
-    else{
-        const Erreur = document.getElementById('erreur');
-        Erreur.classList.remove('MessageErreur')
+        else{
+            const Erreur = document.getElementById('erreur');
+            Erreur.classList.remove('MessageErreur')
+        }
     }
-}
 
 document.querySelector('#contact form').addEventListener('submit', (e) => {
     e.preventDefault();

@@ -20,6 +20,7 @@
 			<li><a href="index.html">projets</a></li>
 			<li><a href="index.html">contact</a></li>
 			<li><a href="login.html" class="login">login</a></li>
+			<li><a href="login.html" class="Logout hidden">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -37,7 +38,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<div class="conteneur"><h2>Mes Projets</h2> <a href="#modale" class="js-modal"><i class="fa-regular fa-pen-to-square" href="#modale"></i> modifier</a></div>
+		<div class="conteneur"> <h2>Mes Projets</h2> <a href="#modale" class="js-modal"><i class="fa-regular fa-pen-to-square" href="#modale"></i> modifier</a></div>
 		<aside id="modale" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
 			<div class="modal-wrapper js-modal-stop">
 				
@@ -62,22 +63,13 @@
 					<div class="input-image">
 						<div id="previewImageContainer"><i class="fa-regular fa-image "></i></div>
 						<input type="file" name="images" id="fileInput" class="input-file"  accept="image/png, image/jpeg" >
-						<label for="fileInput" class="label-file" id="fileInput" onchange="previewImage()">+ Ajouter photo</label>	
+						<label for="fileInput" class="label-file" id="fileInput" >+ Ajouter photo</label>	
 						<p>jpg, png : 4mo max</p>
 					</div>
 					<label for="Titre">Titre</label>
 					<input type="text" name="text" id="text">
 					<label for="categorie">Gategorie</label>
-					<div id="categories">
-						<select name="categorie">
-							<optgroup>
-								<!-- <option value=""></option>
-								<option value="">Objet</option>
-								<option value="">Appartement</option>
-								<option value="">Hotels & restaurants</option> -->
-							</optgroup>
-						</select> 
-					</div>
+					<div id="categories"></div>
 					<div id="monErreur"></div>
 					<div class="ligne-modal"></div>
 					<input type="submit" value="valider" class="CFO" id="submitButton">
