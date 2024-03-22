@@ -157,21 +157,11 @@ boutonHotels.addEventListener("click", function () {
 });
 
 
-const closeModalAdd = function () {
-
-    const modal = document.querySelector('#modale2');
-    modal.style.display = "none"
-    modal.setAttribute('aria-hidden', 'true')
-    modal.removeAttribute('aria-modal')
-    // modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
-    
-    }
-    closeModalAdd()
 
 // modal bloc  
 const openModal = function (e) {
     let modal = null
-
+    
     const closeModal = function (e) {
         if (modal === null) return
         e.preventDefault();
@@ -182,7 +172,7 @@ const openModal = function (e) {
         modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
         modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
         modal = null
-
+        
     }
     e.preventDefault();
     const target = document.querySelector(e.target.getAttribute('href'))
@@ -211,6 +201,16 @@ window.addEventListener('keydown', function (e) {
     }
 })
 
+const closeModalAdd = function () {
+
+    const modal = document.querySelector('#modale2');
+    modal.style.display = "none"
+    modal.setAttribute('aria-hidden', 'true')
+    modal.removeAttribute('aria-modal')
+    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
+    
+    }
+    closeModalAdd()
 
 document.querySelectorAll('.modal .js-modal-delete').forEach(selector => {
     selector.addEventListener('click', async function (e) {
