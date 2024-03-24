@@ -255,8 +255,8 @@ function previewImage() {
                 
                 document.querySelector('.label-file').classList.add('hidden');
                 image.src = imageUrl;
-                image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
-                image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
+                image.style.width = '8.0625rem'; // Indiquez les dimensions souhaitées ici.
+                image.style.height = '12.0625rem'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
             });
             
             reader.readAsDataURL(file);
