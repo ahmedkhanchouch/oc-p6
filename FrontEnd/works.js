@@ -66,6 +66,8 @@ function GenererPieces(figure) {
      // Création des balises 
      const imageElement = document.createElement("img");
      imageElement.src = figure.imageUrl;
+    //  imageElement.style.width = '19.375rem'; // Indiquez les dimensions souhaitées ici.
+    //  imageElement.style.height = '25.8125rem'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
      const nomElement = document.createElement("figcaption");
      nomElement.innerText = figure.title;
 
@@ -239,7 +241,7 @@ function previewImage() {
     fileInput.addEventListener('input', (e) => {
         e.preventDefault();
         const file = fileInput.files[0];
-        const imagePreviewContainer = document.querySelector('.input-image');
+        const imagePreviewContainer = document.querySelector('#previewImageContainer');
         
         if (file.type.match('image.*')) {
             const reader = new FileReader();
@@ -251,12 +253,12 @@ function previewImage() {
                 image.addEventListener('load', function () {
                     imagePreviewContainer.innerHTML = ''; // Vider le conteneur au cas où il y aurait déjà des images.
                     imagePreviewContainer.appendChild(image);
+                    fileInput.classList.add('hidden');
                 });
                 
-                document.querySelector('.label-file').classList.add('hidden');
                 image.src = imageUrl;
                 image.style.width = '8.0625rem'; // Indiquez les dimensions souhaitées ici.
-                image.style.height = '12.0625rem'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
+                image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
             });
             
             reader.readAsDataURL(file);
