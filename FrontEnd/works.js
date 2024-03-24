@@ -13,6 +13,7 @@ function ShowModifier() {
     if (isAuthentified) {
         document.querySelector('.js-modal').classList.add('show')
         document.querySelector('a.login').classList.add('hidden')
+        document.querySelector('div.filtres').classList.add('hidden')
         document.querySelector('a.Logout').classList.remove('hidden')
     }
 }
