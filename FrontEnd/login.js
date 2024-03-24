@@ -15,7 +15,7 @@ async function login(email, password) {
     }
         else{
             const Erreur = document.getElementById('erreur');
-            Erreur.classList.remove('MessageErreur')
+            Erreur.classList.remove('hidden')
         }
     }
 

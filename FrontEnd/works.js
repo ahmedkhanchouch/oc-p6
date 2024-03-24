@@ -182,7 +182,6 @@ const openModal = function (e) {
     modal = target;
     modal.addEventListener('click', closeModal)
     modal.querySelectorAll('.js-modal-close').forEach(elt => elt.addEventListener('click', closeModal))
-    // modal.querySelector('#modal.js-modal-close').addEventListener('click' , closeModal)
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 }
 
@@ -201,17 +200,20 @@ window.addEventListener('keydown', function (e) {
     }
 })
 
+
+
+// blog de code pour fermer le modal apres l'ajout de l'image 
 const closeModalAdd = function () {
 
-    const modal = document.querySelector('#modale2');
+    const modal = document.querySelector('#modale2 ');
     modal.style.display = "none"
     modal.setAttribute('aria-hidden', 'true')
     modal.removeAttribute('aria-modal')
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     
     }
-    closeModalAdd()
-
+    
+// bloc de code de suppression des images 
 document.querySelectorAll('.modal .js-modal-delete').forEach(selector => {
     selector.addEventListener('click', async function (e) {
         e.preventDefault();
@@ -236,7 +238,7 @@ function previewImage() {
     fileInput.addEventListener('input', (e) => {
         e.preventDefault();
         const file = fileInput.files[0];
-        const imagePreviewContainer = document.getElementById('previewImageContainer');
+        const imagePreviewContainer = document.querySelector('.input-image');
         
         if (file.type.match('image.*')) {
             const reader = new FileReader();
@@ -250,6 +252,7 @@ function previewImage() {
                     imagePreviewContainer.appendChild(image);
                 });
                 
+                document.querySelector('.label-file').classList.add('hidden');
                 image.src = imageUrl;
                 image.style.width = '100px'; // Indiquez les dimensions souhaitées ici.
                 image.style.height = 'auto'; // Vous pouvez également utiliser "px" si vous voulez spécifier une hauteur.
@@ -303,22 +306,10 @@ document.querySelector('#modale2 form').addEventListener('submit', async functio
     const result = await response.json();
     GenererPieces(result)
     GenererPiecesmodal(result);
+    closeModalAdd()
 })
 
 
-// bloc de fonctionnement du button submit 
-const btn = document.getElementById('submitButton');
-btn.disabled = true;
-const Title = document.getElementById('text').value
-function analyse(){
-	if (Title.value === ''){
-		btn.disabled = true;
-		return;
-	}
-	btn.disabled = false;
-	// la suite si le choix est cohérent
-}
-analyse()
 
 
 
